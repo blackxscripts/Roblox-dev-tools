@@ -1,0 +1,309 @@
+PHANTOM HUB DEV TOOLS V2 — Resumo Completo
+
+O PHANTOM HUB DEV TOOLS V2 é um hub de desenvolvimento para Roblox baseado em Rayfield UI, criado para funcionar como uma ferramenta de construção, salvamento e gerenciamento de dados dentro do jogo.
+
+Seu objetivo é fornecer recursos que normalmente exigiriam várias ferramentas separadas, reunindo tudo em uma única interface.
+
+
+---
+
+Estrutura Principal
+
+Ao iniciar, o script cria uma pasta principal chamada:
+
+PHANTOM HUB DEVS CONTROLS
+
+Essa pasta funciona como o diretório central de armazenamento do projeto.
+
+Dentro dela são criadas subpastas para organizar os dados:
+
+PHANTOM HUB DEVS CONTROLS
+│
+├─ cframes salvos
+│
+└─ Creator
+
+
+---
+
+Sistema de Interface
+
+Utiliza a biblioteca Rayfield para criar uma interface moderna contendo abas dedicadas.
+
+Abas atuais:
+
+Salvar
+Salvar CFrame
+Ferramenta do Criador
+Player
+
+Cada aba possui uma responsabilidade específica.
+
+
+---
+
+Sistema de Salvamento
+
+A aba Salvar é responsável pela criação e verificação automática das pastas necessárias.
+
+Funções:
+
+Verificar suporte a filesystem.
+
+Criar pasta principal.
+
+Criar pasta de CFrames.
+
+Criar pasta do Creator.
+
+Garantir que a estrutura exista antes de salvar qualquer dado.
+
+
+Isso transforma o script em um sistema persistente capaz de armazenar informações entre sessões.
+
+
+---
+
+Sistema de Salvamento de CFrames
+
+A aba Salvar CFrame permite armazenar posições completas do jogador.
+
+Ao clicar em:
+
+Salvar CFrame Atual
+
+o sistema:
+
+1. Obtém o CFrame atual do personagem.
+
+
+2. Detecta o nome do jogo.
+
+
+3. Gera um identificador aleatório.
+
+
+4. Cria um arquivo JSON.
+
+
+5. Salva todos os componentes do CFrame.
+
+
+
+Exemplo:
+
+cframe1845-BloxFruits.json
+
+Conteúdo:
+
+{
+  "game":"Blox Fruits",
+  "cframe":[...]
+}
+
+
+---
+
+Organização Inteligente
+
+Os arquivos são separados automaticamente por jogo.
+
+Exemplo:
+
+cframe1023-BloxFruits.json
+cframe4455-GrowAGarden.json
+cframe9888-Doors.json
+
+Isso evita misturar posições de jogos diferentes.
+
+
+---
+
+Sistema de Listagem
+
+O botão:
+
+Listar CFrames
+
+procura todos os arquivos existentes na pasta de CFrames e exibe os resultados no console.
+
+Isso serve como base para futuras funções:
+
+Carregar CFrame.
+
+Teleport para CFrame salvo.
+
+Renomear posições.
+
+Excluir posições.
+
+
+
+---
+
+Creator Tool
+
+A funcionalidade mais importante da V2.
+
+A aba:
+
+Ferramenta do Criador
+
+transforma o jogador em um construtor.
+
+
+---
+
+Modo Criador
+
+Ao ativar:
+
+Modo Criador
+
+o sistema entra em modo de construção.
+
+Enquanto estiver ativo:
+
+Tecla F
+
+cria novos blocos.
+
+
+---
+
+Criação de Objetos
+
+Cada bloco criado possui:
+
+Size = Vector3.new(5,5,5)
+Anchored = true
+
+e aparece acima do jogador.
+
+Características:
+
+Blocos fixos.
+
+Não caem.
+
+Servem como base para construções.
+
+Permitem montar plataformas.
+
+
+
+---
+
+Exportação Automática
+
+Quando um bloco é criado:
+
+1. O objeto é gerado no Workspace.
+
+
+2. Um script correspondente é criado.
+
+
+3. Esse script é salvo na pasta Creator.
+
+
+
+Exemplo:
+
+Creator
+│
+├─ object_1234.lua
+├─ object_5542.lua
+└─ object_8841.lua
+
+
+---
+
+Sistema de Reconstrução
+
+Cada arquivo salvo contém instruções para recriar exatamente o objeto criado.
+
+Exemplo:
+
+local p = Instance.new("Part")
+p.Size = Vector3.new(5,5,5)
+p.Anchored = true
+p.Position = Vector3.new(...)
+p.Parent = workspace
+
+Isso significa que a construção pode ser reconstruída futuramente.
+
+
+---
+
+Sistema de Notificações
+
+Todo o hub utiliza um sistema de feedback visual.
+
+Exemplos:
+
+Pastas criadas
+CFrame salvo
+Modo Criador ativado
+Bloco criado
+
+O usuário sempre sabe o que está acontecendo.
+
+
+---
+
+Ferramentas do Jogador
+
+A aba Player possui um sistema de velocidade.
+
+Recursos:
+
+WalkSpeed
+16 → 200
+
+O valor é aplicado continuamente ao Humanoid.
+
+Isso garante que a velocidade permaneça ativa mesmo após mudanças internas do jogo.
+
+
+---
+
+Arquitetura
+
+O script foi projetado seguindo uma estrutura modular lógica:
+
+Filesystem
++
+JSON
++
+Creator
++
+Save System
++
+Rayfield UI
+
+O que permite expandir facilmente para:
+
+Explorer
+
+Asset Library
+
+Project Manager
+
+Build History
+
+Smart Selection
+
+Undo/Redo
+
+Exportador de mapas
+
+Sistema de projetos
+
+
+
+---
+
+Resumo
+
+O PHANTOM HUB DEV TOOLS V2 já funciona como a fundação de um mini editor de mapas dentro do Roblox. Ele oferece gerenciamento de arquivos, salvamento de posições, criação de objetos, exportação automática de construções e ferramentas básicas de jogador, criando uma base sólida para evoluir futuramente para um sistema completo de desenvolvimento e construção modular.
